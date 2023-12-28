@@ -1,8 +1,5 @@
-// select default section
-// let defaultPage = document.querySelector(default);
-// console.log("default");
-
 // set random background image on page load
+
 const backgroundImages = ["woodsy.jpeg", "party.jpeg", "nautiloid.jpeg", "battle.jpeg", "space.jpeg"];
 let currentBackground;
 setBackground();
