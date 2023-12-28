@@ -7,11 +7,11 @@ setBackground();
 // function: set random background image
 
 function setBackground() {
-    const newBackground = backgroundImages[Math.floor(Math.random()*backgroundImages.length)]; // select random image name from images array 
+    const newBackground = backgroundImages[Math.floor(Math.random()*backgroundImages.length)]; // select random image from images array 
     if (newBackground===currentBackground) { 
         setBackground(); // prevent the same image from being loaded twice
     } else {
-        document.querySelector('body').style.backgroundImage = `url('images/backgrounds/${newBackground}`; // set new background image in CSS
+        document.querySelector('body').style.backgroundImage = `url('images/${newBackground}`; // set new background image in CSS
         currentBackground = newBackground; // store name of current background under global variable currentBackground
     }
 }
@@ -24,8 +24,5 @@ btn.addEventListener("click", () => {
     // set new background
     setBackground();
 
+
 });
-
-
-
-
