@@ -28,6 +28,15 @@ btn.addEventListener("click", () => {
 });
 
 
+// basic fetch
+function fetchAttribute(attribute) {
+    fetch(`https://api.open5e.com/${attribute}`)
+        .then((response) => response.json())
+        .then((data) => {console.log(data);
+    })
+}
+
+fetchAttribute("races/elf");
 
 
 
