@@ -11,7 +11,7 @@ function setBackground() {
     if (newBackground===currentBackground) { 
         setBackground(); // prevent the same image from being loaded twice
     } else {
-        document.querySelector('body').style.backgroundImage = `url('images/${newBackground}`; // set new background image in CSS
+        document.querySelector('body').style.backgroundImage = `url('images/backgrounds/${newBackground}`; // set new background image in CSS
         currentBackground = newBackground; // store name of current background under global variable currentBackground
     }
 }
