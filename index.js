@@ -32,28 +32,34 @@ btn.addEventListener("click", () => {
 function fetchAttribute(attribute) {
     fetch(`https://api.open5e.com/${attribute}`)
         .then((response) => response.json())
-        .then((data) => {console.log(data);
+        .then((data) => {
+            const x = Math.floor(Math.random() * data.count);
+            // console.log("length: " + data.count);
+            // console.log("random number: " + x);
+            // console.log(data.results[x]);
+            const newAttribute = document.getElementById(attribute);
+            newAttribute.innerText = data.results[x].name;
     })
 }
 
-fetchAttribute("races");
+// fetchAttribute("classes");
 
 
 // first stab at filling in card on DOM
 
 function generateCard() {
-    let characterName = document.getElementById("name");
-    let characterRace = document.getElementById("race");
-    let characterClass = document.getElementById("class");
-    let characterBackground = document.getElementById("background");
-
-    characterName.innerText = "Kiskar";
-    characterRace.innerText = "elf";
-    characterClass.innerText = "ranger";
-    characterBackground.innerText = "outlander";
+    fetchAttribute("races");
+    fetchAttribute("classes");
+    fetchAttribute("backgrounds");
 }
 
 btn.addEventListener("click", generateCard);
+
+//*** integrated with fetchAttribute
+// function addAttribute(attribute, data) {
+//     const newAttribute = document.getElementById(attribute);
+//     newAttribute.innerText = data.name;
+// }
 
 
 
