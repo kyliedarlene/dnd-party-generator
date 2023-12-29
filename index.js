@@ -20,15 +20,14 @@ function setBackground() {
 
 const btn = document.querySelector('button');
 
+// this will later be changed so that "click" calls the setParty function, and background will change after data fetches
 btn.addEventListener("click", () => {
-    // set new background
     setBackground();
-
-
+    addPartyHTML();
 });
 
 
-// basic fetch
+// fetch and add attribute on DOM
 function fetchAttribute(attribute) {
     fetch(`https://api.open5e.com/${attribute}`)
         .then((response) => response.json())
@@ -42,25 +41,30 @@ function fetchAttribute(attribute) {
     })
 }
 
-// fetchAttribute("classes");
-
-
 // first stab at filling in card on DOM
 
 function generateCard() {
     fetchAttribute("races");
     fetchAttribute("classes");
     fetchAttribute("backgrounds");
+
+    // add set icon switch
 }
 
 btn.addEventListener("click", generateCard);
 
-//*** integrated with fetchAttribute
-// function addAttribute(attribute, data) {
-//     const newAttribute = document.getElementById(attribute);
-//     newAttribute.innerText = data.name;
-// }
 
+const partyHTML = document.getElementById("party");
+const copy = document.getElementById("copy");
+
+// I think this will have to be changed to be added by DOM but hard coding first
+function addPartyHTML() {
+    if(partyHTML.hasAttribute("hidden")) {
+    partyHTML.removeAttribute("hidden");
+    copy.innerText = "Meet your adventure party!";
+    btn.innerText = "Make New Party";
+    }
+} 
 
 
 
