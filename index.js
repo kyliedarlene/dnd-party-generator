@@ -26,3 +26,59 @@ btn.addEventListener("click", () => {
 
 
 });
+
+
+
+
+
+/******
+ * 
+ * PSEUDOCODE
+ * 
+ * When the button is clicked:
+ * 
+ *** setBackground()
+ * 
+ *** displayGeneratedParty()
+ * 
+ * 
+ * const party = generateParty()
+ * forEach element of party {
+ *      displayCard();                         /////
+ * }
+ * 
+ * generateParty() create Party Object + fill with Character Objects
+ *      declare party
+ *      x 6: addCharacter()
+ *      return party
+ * 
+ * addCharacter() add Character Object to Party Object          // maybe could be condensed into generateParty()?
+ *      add makeCharacter()
+ *      Name: Character1            // how to make it automatically character #?
+ * 
+ * makeCharacter() make and return Character object
+ *      Race: fetchStat()
+ *      Class: fetchStat()
+ *      Alignment: fetchStat()
+ */
+
+
+
+ /*
+ * 
+ * fetchAttribute()
+ *      
+ * 
+ * 
+ * 
+ */
+
+// const url = "https://www.dnd5eapi.co/docs/#get-/api/";
+
+// function fetchAttribute(attribute) {
+//     fetch(`url/${attribute}/elf`)
+//         .then((response) => response.json())
+//         .then(() => console.log(response))
+//  }
+
+//  fetchAttribute("race");
