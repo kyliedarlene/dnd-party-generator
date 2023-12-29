@@ -36,7 +36,25 @@ function fetchAttribute(attribute) {
     })
 }
 
-fetchAttribute("races/elf");
+fetchAttribute("races");
+
+
+// first stab at filling in card on DOM
+
+function generateCard() {
+    let characterName = document.getElementById("name");
+    let characterRace = document.getElementById("race");
+    let characterClass = document.getElementById("class");
+    let characterBackground = document.getElementById("background");
+
+    characterName.innerText = "Kiskar";
+    characterRace.innerText = "elf";
+    characterClass.innerText = "ranger";
+    characterBackground.innerText = "outlander";
+}
+
+btn.addEventListener("click", generateCard);
+
 
 
 
