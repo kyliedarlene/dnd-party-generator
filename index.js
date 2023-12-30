@@ -1,10 +1,16 @@
-// set random background image on page load
+/* declare global variables */
 
-const backgroundImages = ["woodsy.jpeg", "party.jpeg", "nautiloid.jpeg", "battle.jpeg", "space.jpeg"];
+const copy = document.getElementById("copy");
+const carousel = document.getElementById("carousel");
+const btn = document.querySelector('button');
+
 let currentBackground;
-setBackground();
+const backgroundImages = ["woodsy.jpeg", "party.jpeg", "nautiloid.jpeg", "battle.jpeg", "space.jpeg"];
 
-// function: set random background image
+
+/** FUNCTIONS **/
+
+/* set random background image */
 
 function setBackground() {
     const newBackground = backgroundImages[Math.floor(Math.random()*backgroundImages.length)]; // select random image name from images array 
@@ -16,57 +22,12 @@ function setBackground() {
     }
 }
 
-// event listener: change background picture on button click
-
-const btn = document.querySelector('button');
-
-// this will later be changed so that "click" calls the setParty function, and background will change after data fetches
-btn.addEventListener("click", () => {
-    setBackground();
-    generateParty();
-});
-
-
-
-// first stab at filling in card on DOM
-
-function generateCard() {
-    fetchAttribute("races");
-    fetchAttribute("classes");
-    fetchAttribute("backgrounds");
-
-    // add set icon switch
-}
-
-function generateCardCarousel() {
-    const carousel = document.getElementById('carousel');
-    console.log(carousel);
-    const race = document.createElement('li');
-    race.textContent = "it works";
-    console.log("race: " + race);
-    carousel.append(race);
-}
-
-// generateCardCarousel();
-
-btn.addEventListener("click", generateCard);
-
-
-//const partyHTML = document.getElementById("party");
-//const copy = document.getElementById("copy");
-
-// I think this will have to be changed to be added by DOM but hard coding first
-function addPartyHTML() {
-    if(partyHTML.hasAttribute("hidden")) {
-    partyHTML.removeAttribute("hidden");
-    copy.innerText = "Meet your adventure party!";
-    btn.innerText = "Make New Party";
-    }
-} 
-
-const party = document.getElementById("carousel");
+/* create and append character cards to carousel */
 
 function generateParty() {
+    copy.innerText = "Meet your adventure party!";
+    btn.innerText = "Make New Party";
+
     for (let i = 1; i <= 6; i++) {
         // create card
         const card = document.createElement("li");
@@ -85,12 +46,13 @@ function generateParty() {
 
         // set class icon
         
-        
 
         // append card to carousel
-        party.append(card);
+        carousel.append(card);
     }
 }
+
+/* fetch attribute and append to card */
 
 function setAttribute(card, cardItem, attribute, subAttribute) {
     fetch(`https://api.open5e.com/${attribute}`)
@@ -101,3 +63,17 @@ function setAttribute(card, cardItem, attribute, subAttribute) {
             card.append(cardItem);
     })
 }
+
+//** EVENT LISTENERS **/
+
+// page load: set random background
+window.addEventListener("load", setBackground);
+
+// button click: reset background and load party (this will later be changed so that "click" calls the setParty function, and background will change after data fetches)
+btn.addEventListener("click", () => {
+    setBackground();
+    generateParty();
+});
+
+
+
