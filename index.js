@@ -23,7 +23,7 @@ const btn = document.querySelector('button');
 // this will later be changed so that "click" calls the setParty function, and background will change after data fetches
 btn.addEventListener("click", () => {
     setBackground();
-    addPartyHTML();
+    //addPartyHTML();
 });
 
 
@@ -51,11 +51,22 @@ function generateCard() {
     // add set icon switch
 }
 
+function generateCardCarousel() {
+    const carousel = document.getElementById('carousel');
+    console.log(carousel);
+    const race = document.createElement('li');
+    race.textContent = "it works";
+    console.log("race: " + race);
+    carousel.append(race);
+}
+
+// generateCardCarousel();
+
 btn.addEventListener("click", generateCard);
 
 
-const partyHTML = document.getElementById("party");
-const copy = document.getElementById("copy");
+//const partyHTML = document.getElementById("party");
+//const copy = document.getElementById("copy");
 
 // I think this will have to be changed to be added by DOM but hard coding first
 function addPartyHTML() {
@@ -65,6 +76,22 @@ function addPartyHTML() {
     btn.innerText = "Make New Party";
     }
 } 
+
+
+function generateParty() {
+    const party = document.createElement("div");
+    // create and insert carousel
+    // function generateCard() x 6
+}
+
+{/* <div id="party" class="container">
+    <div class="card">
+        <h2 id="names">Character 1</h2>
+        <h3 id="races"></h3>
+        <h3 id="classes"></h3>
+        <h3 id="backgrounds"></h3>
+    </div>
+</div> */}
 
 
 
@@ -98,24 +125,3 @@ function addPartyHTML() {
  *      Class: fetchStat()
  *      Alignment: fetchStat()
  */
-
-
-
- /*
- * 
- * fetchAttribute()
- *      
- * 
- * 
- * 
- */
-
-// const url = "https://www.dnd5eapi.co/docs/#get-/api/";
-
-// function fetchAttribute(attribute) {
-//     fetch(`url/${attribute}/elf`)
-//         .then((response) => response.json())
-//         .then(() => console.log(response))
-//  }
-
-//  fetchAttribute("race");

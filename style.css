@@ -43,3 +43,26 @@ button {
     font-family: 'Keania One', serif;
     font-size: 1.4em;
 }
+
+.carousel-container {
+    background: pink;
+    display: flex;
+    padding-top: 5em;
+    padding-bottom: 5em;
+    margin: 1.7em;
+    justify-content: center;
+}
+
+.carousel-list {
+    background: lavender;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 16px;
+    scroll-snap-type: x mandatory;
+}
+
+.card {
+    background: black;
+    width: 15em;
+    height: 18em;
+}
