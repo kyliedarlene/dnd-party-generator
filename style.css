@@ -45,7 +45,6 @@ button {
 }
 
 .carousel-container {
-    background: pink;
     display: flex;
     padding-top: 5em;
     padding-bottom: 5em;
@@ -54,7 +53,6 @@ button {
 }
 
 .carousel-list {
-    background: lavender;
     display: grid;
     grid-auto-flow: column;
     gap: 16px;

@@ -25,10 +25,17 @@ function setBackground() {
 /* create and append character cards to carousel */
 
 function generateParty() {
+    // clear previously-generated cards
+    const previousCharacters = carousel.querySelectorAll("li");
+    previousCharacters.forEach((currentValue) => {
+        carousel.removeChild(currentValue);
+    })
+    
+    // update body and button copy
     copy.innerText = "Meet your adventure party!";
     btn.innerText = "Make New Party";
 
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 5; i++) {
         // create card
         const card = document.createElement("li");
         card.className = "card";
@@ -52,9 +59,9 @@ function generateParty() {
     }
 }
 
-/* fetch attribute and append to card */
+/* Fetch attribute and append to card */
 
-function setAttribute(card, cardItem, attribute, subAttribute) {
+function setAttribute(card, cardItem, attribute) {
     fetch(`https://api.open5e.com/${attribute}`)
         .then((response) => response.json())
         .then((data) => {
@@ -66,14 +73,11 @@ function setAttribute(card, cardItem, attribute, subAttribute) {
 
 //** EVENT LISTENERS **/
 
-// page load: set random background
+/* page load: set random background */
 window.addEventListener("load", setBackground);
 
-// button click: reset background and load party (this will later be changed so that "click" calls the setParty function, and background will change after data fetches)
+/* button click: reset background and load party (this will later be changed so that "click" calls the setParty function, and background will change after data fetches) */
 btn.addEventListener("click", () => {
     setBackground();
     generateParty();
 });
-
-
-
