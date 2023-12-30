@@ -23,23 +23,10 @@ const btn = document.querySelector('button');
 // this will later be changed so that "click" calls the setParty function, and background will change after data fetches
 btn.addEventListener("click", () => {
     setBackground();
-    //addPartyHTML();
+    generateParty();
 });
 
 
-// fetch and add attribute on DOM
-function fetchAttribute(attribute) {
-    fetch(`https://api.open5e.com/${attribute}`)
-        .then((response) => response.json())
-        .then((data) => {
-            const x = Math.floor(Math.random() * data.count);
-            // console.log("length: " + data.count);
-            // console.log("random number: " + x);
-            // console.log(data.results[x]);
-            const newAttribute = document.getElementById(attribute);
-            newAttribute.innerText = data.results[x].name;
-    })
-}
 
 // first stab at filling in card on DOM
 
@@ -77,51 +64,40 @@ function addPartyHTML() {
     }
 } 
 
+const party = document.getElementById("carousel");
 
 function generateParty() {
-    const party = document.createElement("div");
-    // create and insert carousel
-    // function generateCard() x 6
+    for (let i = 1; i <= 6; i++) {
+        // create card
+        const card = document.createElement("li");
+        card.className = "card";
+        card.id = `character-${i}`;
+
+        // add character attributes to card
+        const characterRace = document.createElement("h3");
+        const characterClass = document.createElement("h3");
+        const characterBackground = document.createElement("h3");
+
+        // fetch attributes and append to card
+        setAttribute(card, characterRace, "races");
+        setAttribute(card, characterClass, "classes");
+        setAttribute(card, characterBackground, "backgrounds");
+
+        // set class icon
+        
+        
+
+        // append card to carousel
+        party.append(card);
+    }
 }
 
-{/* <div id="party" class="container">
-    <div class="card">
-        <h2 id="names">Character 1</h2>
-        <h3 id="races"></h3>
-        <h3 id="classes"></h3>
-        <h3 id="backgrounds"></h3>
-    </div>
-</div> */}
-
-
-
-/******
- * 
- * PSEUDOCODE
- * 
- * When the button is clicked:
- * 
- *** setBackground()
- * 
- *** displayGeneratedParty()
- * 
- * 
- * const party = generateParty()
- * forEach element of party {
- *      displayCard();                         /////
- * }
- * 
- * generateParty() create Party Object + fill with Character Objects
- *      declare party
- *      x 6: addCharacter()
- *      return party
- * 
- * addCharacter() add Character Object to Party Object          // maybe could be condensed into generateParty()?
- *      add makeCharacter()
- *      Name: Character1            // how to make it automatically character #?
- * 
- * makeCharacter() make and return Character object
- *      Race: fetchStat()
- *      Class: fetchStat()
- *      Alignment: fetchStat()
- */
+function setAttribute(card, cardItem, attribute, subAttribute) {
+    fetch(`https://api.open5e.com/${attribute}`)
+        .then((response) => response.json())
+        .then((data) => {
+            const x = Math.floor(Math.random() * data.count);
+            cardItem.innerText = data.results[x].name;
+            card.append(cardItem);
+    })
+}
