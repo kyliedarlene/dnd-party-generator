@@ -44,25 +44,5 @@ button {
     font-size: 1.4em;
 }
 
-.carousel-container {
-    display: flex;
-    padding-top: 5em;
-    padding-bottom: 5em;
-    margin: 1.7em;
-    justify-content: center;
-}
 
-.carousel-list {
-    display: grid;
-    grid-auto-flow: column;
-    gap: 16px;
-    scroll-snap-type: x mandatory;
-}
 
-.card {
-    background: white;
-    border-radius: .9em;
-    color: #4B4B4B;
-    width: 15em;
-    height: 18em;
-}

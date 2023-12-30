@@ -24,7 +24,7 @@ function setBackground() {
 
 /* create and append character cards to carousel */
 
-function generateParty() {
+function generateParty() {              // after form is built out, this will take an array of player names as an argument
     // clear previously-generated cards
     const previousCharacters = carousel.querySelectorAll("li");
     previousCharacters.forEach((currentValue) => {
@@ -35,11 +35,10 @@ function generateParty() {
     copy.innerText = "Meet your adventure party!";
     btn.innerText = "Make New Party";
 
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 5; i++) {      // when this takes an array of player names as an argument, this will be changed to a forEach() loop
         // create card
         const card = document.createElement("li");
         card.className = "card";
-        card.id = `character-${i}`;
 
         // add character attributes to card
         const characterRace = document.createElement("h3");
@@ -66,7 +65,9 @@ function setAttribute(card, cardItem, attribute) {
         .then((response) => response.json())
         .then((data) => {
             const x = Math.floor(Math.random() * data.count);
+            console.log(data.results[x])
             cardItem.innerText = data.results[x].name;
+            cardItem.class = attribute;
             card.append(cardItem);
     })
 }
