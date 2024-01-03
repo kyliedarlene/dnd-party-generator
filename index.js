@@ -82,3 +82,6 @@ btn.addEventListener("click", () => {
     setBackground();
     generateParty();
 });
+
+
+// TEST NOTE
