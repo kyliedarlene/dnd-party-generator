@@ -59,10 +59,19 @@ button {
     scroll-snap-type: x mandatory;
 }
 
-.card {
+#card-container {
+    display: flex;
+    justify-content: center;
+}
+
+#card {
     background: white;
     border-radius: .9em;
     color: #4B4B4B;
-    width: 15em;
-    height: 18em;
+    width: 25em;
+    height: 30em;
+}
+
+#class-icon {
+    width: 8em;
 }
