@@ -26,7 +26,7 @@ function setBackground() {
 //createCard() adds card to DOM
 const cardContainer = document.getElementById('card-container');
 
-function createCard() {
+function createCard(character) {
     const card = document.createElement('div');
     card.id = 'card';
     card.class = 'card';
@@ -35,16 +35,16 @@ function createCard() {
     const characterRace = document.createElement('h3');
     const characterClass = document.createElement('h2');
     const classArchetype = document.createElement('h3');
-    const archetypeDescription = document.createAttribute('p');
+    //const archetypeDescription = document.createAttribute('p');
 
     characterRace.id = 'race';
     characterClass.id = 'class';
     classArchetype.id = 'archetype';
     //archetypeDescription.id = 'archetype-description';
 
-    characterRace.innerText = "Drow";
-    characterClass.innerText = "Druid";
-    classArchetype.innerText = "Circle of the Land";
+    characterRace.innerText = character.race.name;
+    characterClass.innerText = character.class.name;
+    classArchetype.innerText = character.class.archetype;
     //archetypeDescription.innerText = "The Circle of the Land is made up of mystics and sages who safeguard ancient knowledge and rites through a vast oral tradition. These druids meet within sacred circles of trees or standing stones to whisper primal secrets in Druidic. The circle's wisest members preside as the chief priests of communities that hold to the Old Faith and serve as advisors to the rulers of those folk. As a member of this circle, your magic is influenced by the land where you were initiated into the circle's mysterious rites."
 
     card.append(characterRace);
@@ -53,13 +53,13 @@ function createCard() {
     //card.appendChild(archetypeDescription);
 }
 
-createCard();
+//createCard();
 
 // uses fetch to retrieve random character data and then save in object; this will be passed to the create card function
 // returns character object
 
 function generateCharacter() {
-    let randomCharacter = {
+    const randomCharacter = {
         race: {},
         class: {
             archetype: {}, 
@@ -70,12 +70,13 @@ function generateCharacter() {
     // race
     fetch(`https://api.open5e.com/races`)
         .then((response) => response.json())
-        .then((data) => {
-        const x = randomElement(data.results);
-        randomCharacter.race.name = data.results[x].name;
-        randomCharacter.race.description = data.results[x].desc;
-        //console.log(randomCharacter);
-    })
+        .then((data) => assignAttributes(data, randomCharacter, "race"))
+    //     .then((data) => {
+    //     const x = randomElement(data.results);
+    //     randomCharacter.race.name = data.results[x].name;
+    //     randomCharacter.race.description = data.results[x].desc;
+    //     //console.log(randomCharacter);
+    // })
 
     // class
     fetch(`https://api.open5e.com/classes`)
@@ -108,39 +109,22 @@ function generateCharacter() {
     return randomCharacter;
 }
 
-console.log(generateCharacter());
+let generatedCharacter = generateCharacter();
+console.log(generatedCharacter);
 
 
 function randomElement(array) {
     return Math.floor(Math.random() * array.length);
 }
 
+function assignAttributes(data, character, attribute) {
+    const x = randomElement(data.results);
+    character[attribute].name = data.results[x].name;
+    character[attribute].desc = data.results[x].desc;
+}
+
+
 // OLD CODE: testing refactored code
-// function createCard() {
-//     const card = document.createElement('div');
-//     card.id = 'card';
-//     card.Container.append(card);
-    
-//     const characterRace = document.createElement('h3');
-//     const characterClass = document.createElement('h2');
-//     const classArchetype = document.createElement('h3');
-//     const archetypeDescription = document.createAttribute('p');
-
-//     characterRace.id = 'race';
-//     characterClass.id = 'class';
-//     classArchetype.id = 'archetype';
-//     archetypeDescription.id = 'archetype-description';
-
-//     characterRace.innerText = "Drow";
-//     characterClass.innerText = "Druid";
-//     classArchetype.innerText = "Circle of the Land";
-//     archetypeDescription.innerText = "The Circle of the Land is made up of mystics and sages who safeguard ancient knowledge and rites through a vast oral tradition. These druids meet within sacred circles of trees or standing stones to whisper primal secrets in Druidic. The circle's wisest members preside as the chief priests of communities that hold to the Old Faith and serve as advisors to the rulers of those folk. As a member of this circle, your magic is influenced by the land where you were initiated into the circle's mysterious rites."
-
-// }
-
-// createCard();
-
-
 // /* create and append character cards to carousel */
 
 // function generateParty() {              // after form is built out, this will take an array of player names as an argument
