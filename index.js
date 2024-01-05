@@ -13,17 +13,20 @@ const generatedCharacters = [];
 //** EVENT LISTENERS **/
 
 /* page load: set random background */
-window.addEventListener("load", setBackground);
+window.addEventListener('load', setBackground);
 
 /* button click: reset background and load party (this will later be changed so that "click" calls the setParty function, and background will change after data fetches) */
-btn.addEventListener("click", async() => {
+btn.addEventListener('click', async() => {
     setBackground();
     createCard(await generateCharacter());
 });
 
+btn.addEventListener('mouseover', () => {
+    shinyEffect();
+}) 
+
 
 //** FUNCTIONS **//
-
 
 /* set random background image */
 
@@ -38,6 +41,10 @@ function setBackground() {
     }
 }
 
+function shinyEffect() {
+    btn.style.backgroundPosition = 'left center';
+    btn.style.transition = 'background-position 2000ms ease-out'
+}
 
 /* retrieve random character data and return character object */
 
