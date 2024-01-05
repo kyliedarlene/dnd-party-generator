@@ -13,6 +13,10 @@ body {
     margin-bottom: 15em;
   }
 
+p {
+    font-size: .85em;
+}
+
 .header {
     font-family: 'Keania One', serif;
     align-self: flex-start;
@@ -54,10 +58,13 @@ button {
 }
 
 .carousel-list {
-    display: grid;
-    grid-auto-flow: column;
-    gap: 16px;
-    scroll-snap-type: x mandatory;
+    /* display: grid;
+    grid-auto-flow: column; */
+    display: center;
+    justify-content: center;
+    /* gap: 16px;
+    scroll-snap-type: x mandatory; */
+    list-style: none;
 }
 
 #card-container {
@@ -67,10 +74,16 @@ button {
 
 .card {
     background: white;
+    opacity: .85;
     border-radius: .9em;
     color: #4B4B4B;
-    width: 22em;
-    height: 30em;
+    width: 65em;
+    height: 45em;
+    overflow: hidden;
+    padding: 5em;
+    padding-right: 4em;
+    padding-left: 4em;
+    text-align: left;
 }
 
 #class-icon {

@@ -16,12 +16,13 @@ const generatedCharacters = [];
 /* page load: set random background */
 window.addEventListener('load', setBackground);
 
-/* button click: reset background and load party (this will later be changed so that "click" calls the setParty function, and background will change after data fetches) */
+/* button click: reset background and load character card */
 btn.addEventListener('click', async() => {
     setBackground();
     createCard(await generateCharacter());
 });
 
+/* button mousover: shiny mouseover effect */
 btn.addEventListener('mouseover', () => {
     shinyEffect();
 }) 
@@ -78,7 +79,7 @@ async function generateCharacter() {
             // archetype
             const y = randomElement(data.results[x].archetypes);
             randomCharacter.class.archetype.name = data.results[x].archetypes[y].name;
-            randomCharacter.class.archetype.description = data.results[x].archetypes[y].desc;
+            randomCharacter.class.archetype.description = data.results[x].archetypes[y].desc.split('#', 1)[0];
         }),
 
         // background
@@ -87,7 +88,7 @@ async function generateCharacter() {
             .then((data) => {
             const x = randomElement(data.results);
             randomCharacter.background.name = data.results[x].name;
-            randomCharacter.background.description = data.results[x].desc;
+            randomCharacter.background.description = data.results[x].desc.split('*', 1)[0];
             randomCharacter.background.proficiencies = data.results[x].skill_proficiencies;
         })
     ])
@@ -108,24 +109,40 @@ function createCard(character) {
     card.className = 'card';
 
     const characterRace = document.createElement('h3');
-    const characterClass = document.createElement('h2');
-    const classArchetype = document.createElement('h3');
+    const characterClass = document.createElement('h3');
+    const classArchetype = document.createElement('h4');
     const archetypeDescription = document.createElement('p');
+    const characterBackground = document.createElement('h3');
+    const backgroundProficiencies = document.createElement('h4');
+    const backgroundDescription = document.createElement('p');
 
     characterRace.id = 'race';
     characterClass.id = 'class';
     classArchetype.id = 'archetype';
-    //archetypeDescription.id = 'archetype-description';
+    archetypeDescription.id = 'archetype-description';
+    characterBackground.id = 'background';
+    backgroundProficiencies.id = 'proficiencies';
+    backgroundDescription.id = 'background-description';
 
-    characterRace.innerText = character.race.name;
-    characterClass.innerText = character.class.name;
-    classArchetype.innerText = character.class.archetype.name;
-    //archetypeDescription.innerText = character.class.archetype.description;
+    characterRace.innerText = `Race: ${character.race.name}`;
+    characterClass.innerText = `Class: ${character.class.name}`;
+    classArchetype.innerText = `Archetype: ${character.class.archetype.name}`;
+    archetypeDescription.innerText = character.class.archetype.description;
+    characterBackground.innerText = `Background: ${character.background.name}`;
+    if (character.background.proficiencies !== null) {
+        backgroundProficiencies.innerText = `Proficiencies: ${character.background.proficiencies}`;
+    } else {
+        backgroundProficiencies.innerText = `Proficiencies: N/A`;
+    }
+    backgroundDescription.innerText = character.background.description;
 
     card.append(characterRace);
     card.append(characterClass);
     card.append(classArchetype);
-    //card.append(archetypeDescription);
+    card.append(archetypeDescription);
+    card.append(characterBackground);
+    card.append(backgroundProficiencies);
+    card.append(backgroundDescription);
 
     carousel.append(card);
 }
@@ -135,7 +152,6 @@ function createCard(character) {
 function randomElement(array) {
     return Math.floor(Math.random() * array.length);
 }
-
 
 
 // PREVIOUS CODE
