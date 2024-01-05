@@ -44,8 +44,8 @@ button {
     font-size: 1.4em;
 }
 
-.carousel-container {
-    display: flex;
+#party {
+    display: none;
     padding-top: 5em;
     padding-bottom: 5em;
     margin: 1.7em;

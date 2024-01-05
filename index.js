@@ -2,6 +2,7 @@
 
 const copy = document.getElementById("copy");
 const carousel = document.getElementById("carousel");
+const party = document.getElementById('party');
 const btn = document.querySelector('button');
 
 let currentBackground;
@@ -99,6 +100,8 @@ async function generateCharacter() {
 /* create card and append it to carousel */
 
 function createCard(character) {
+    party.style.display = 'flex';
+    
     const card = document.createElement('li');
     card.className = 'card';
 
