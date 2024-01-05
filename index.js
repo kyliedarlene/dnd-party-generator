@@ -101,6 +101,8 @@ async function generateCharacter() {
 
 function createCard(character) {
     party.style.display = 'flex';
+    copy.style.display = 'none';
+    btn.style.display = 'none';
     
     const card = document.createElement('li');
     card.className = 'card';
