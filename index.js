@@ -1,4 +1,4 @@
-/* declare global variables */
+//* GLOBAL VARIABLES *//
 
 const copy = document.getElementById("copy");
 const carousel = document.getElementById("carousel");
@@ -8,6 +8,7 @@ let currentBackground;
 const backgroundImages = ["woodsy.jpeg", "party.jpeg", "nautiloid.jpeg", "battle.jpeg", "space.jpeg"];
 
 const generatedCharacters = [];
+
 
 //** EVENT LISTENERS **/
 
@@ -21,8 +22,8 @@ btn.addEventListener("click", async() => {
 });
 
 
-
 //** FUNCTIONS **//
+
 
 /* set random background image */
 
@@ -38,9 +39,10 @@ function setBackground() {
 }
 
 
-// uses fetch to retrieve random character data and return character object
+/* retrieve random character data and return character object */
 
 async function generateCharacter() {
+    // initialize randomCharacter object
     const randomCharacter = {
         race: {},
         class: {
@@ -49,9 +51,9 @@ async function generateCharacter() {
         background: {},
     };
 
-    await Promise.all([     // fetch data and add 
-
-    // race
+    // fetch and add character attributes to randomCharacter
+    await Promise.all([    
+        // race
         fetch(`https://api.open5e.com/races`)
             .then((response) => response.json())
             .then((data) => {
@@ -81,18 +83,13 @@ async function generateCharacter() {
             randomCharacter.background.proficiencies = data.results[x].skill_proficiencies;
         })
     ])
-    // console.log("generateCharacter start")
-    // console.log(randomCharacter.race.name)
-    // console.log("generateCard end")
-    // generatedCharacters.push(randomCharacter);
-    
-    //console.log(randomCharacter)
 
+    // return randomCharacter
     return randomCharacter;
 }
 
 
-//createCard() creates card and appends it to carousel
+/* create card and append it to carousel */
 
 function createCard(character) {
     const card = document.createElement('li');
@@ -118,40 +115,18 @@ function createCard(character) {
     card.append(classArchetype);
     //card.append(archetypeDescription);
 
-    // console.log("createCard start");
-    // console.log(character);
-    // console.log("createCard end")
-
     carousel.append(card);
 }
 
+/* return a randomly selected array index */
 
 function randomElement(array) {
     return Math.floor(Math.random() * array.length);
 }
 
-/* invoke functions */
 
 
-// console.log(generatedCharacter.race)
-
-
-//createCard(generatedCharacter);
-
-
-// console.log(generatedCharacter);
-// //console.log(generateCharacter.race['name'])
-// console.log("debugging end")
-
-// console.log(generatedCharacters);
-
-
-
-
-
-
-
-// OLD CODE: testing refactored code
+// PREVIOUS CODE
 // /* create and append character cards to carousel */
 
 // function generateParty() {              // after form is built out, this will take an array of player names as an argument
