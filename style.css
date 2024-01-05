@@ -64,7 +64,7 @@ button {
     justify-content: center;
 }
 
-#card {
+.card {
     background: white;
     border-radius: .9em;
     color: #4B4B4B;
